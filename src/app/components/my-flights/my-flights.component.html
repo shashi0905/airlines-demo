@@ -1,16 +1,7 @@
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th></th>
-            <th>Flight</th>
-            <th>From</th>
-            <th>To</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let flight of flights">
-            <td>{{flight.flightNumber}}</td>
-            <td>{{flight.origin}}</td>
-            <td>{{flight.destination}}</td>
-        </tr>
-    </tbody>
+<ag-grid-angular 
+    style="width: 600px; height: 250px;" 
+    autoHeight=true
+    class="ag-theme-balham"
+    [rowData]="rowData" 
+    [columnDefs]="columnDefs">
+</ag-grid-angular>

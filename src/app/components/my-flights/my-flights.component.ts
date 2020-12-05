@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Flight } from '../../models/flight';
-import { FlightsService } from "../../services/flight.service";
+import { FlightService } from "../../services/flight.service"
 
 @Component({
-  selector: 'app-my-flights',
-  templateUrl: './my-flights.component.html',
-  styleUrls: ['./my-flights.component.css']
+	selector: 'app-my-flights',
+	templateUrl: './my-flights.component.html',
+	styleUrls: ['./my-flights.component.css']
 })
 export class MyFlightsComponent implements OnInit {
 
-  private flights : Flight[];
+	public rowData: Flight[];
 
-  constructor(private flightService: FlightService) { }
+	columnDefs = [
+		{ headerName: 'Flight No', field: 'flightNumber' },
+		{ headerName: 'Source', field: 'origin' },
+		{ headerName: 'Destination', field: 'destination', editable: true }
+	];
 
-  ngOnInit(): void {
-    this.flights = this.flightService.getMyFlights();
-  }
+	constructor(private flightService: FlightService) { }
+
+	ngOnInit(): void {
+		this.rowData = this.flightService.getMyFlights();
+	}
 
 }

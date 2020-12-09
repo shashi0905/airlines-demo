@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Flight } from '../models/flight';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class FlightService {
 
   private MYFLIGHTS: Flight[] = [
-  {"id": 1000, "flightNumber" : "F1000", "origin": "NDLS", "destination" : "GUW"},
-  {"id": 1001, "flightNumber" : "F1001", "origin": "NDLS", "destination" : "DDN"}
+  {"flightNumber" : "F1000", "source": "NDLS", "destination" : "GUW"},
+  {"flightNumber" : "F1001", "source": "NDLS", "destination" : "DDN"}
 ];
 
 constructor(private http: HttpClient) { }
@@ -18,5 +19,10 @@ constructor(private http: HttpClient) { }
  public getMyFlights() : Flight[]{
  return this.MYFLIGHTS;
  }
+
+ public getFlightsData() : Observable<Flight[]>{
+    let url = "http://localhost:8080/flights";
+    return this.http.get<Flight[]>(url);
+  }
 
 }

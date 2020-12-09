@@ -1,6 +1,5 @@
 export class Flight {
-  id : number;
   flightNumber : string;
-  origin : string;
+  source : string;
   destination : string;
 }

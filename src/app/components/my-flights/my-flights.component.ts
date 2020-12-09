@@ -13,14 +13,20 @@ export class MyFlightsComponent implements OnInit {
 
 	columnDefs = [
 		{ headerName: 'Flight No', field: 'flightNumber' },
-		{ headerName: 'Source', field: 'origin' },
+		{ headerName: 'Source', field: 'source' },
 		{ headerName: 'Destination', field: 'destination', editable: true }
 	];
 
 	constructor(private flightService: FlightService) { }
 
 	ngOnInit(): void {
-		this.rowData = this.flightService.getMyFlights();
+		this.getFlightsData();
 	}
+	
+	 private getFlightsData() {
+    this.flightService.getFlightsData().subscribe(data => {
+      this.rowData = data;
+    });
+  }
 
 }
